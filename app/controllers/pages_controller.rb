@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  access all: [:home, :help, :legal, :about, :donate], user: :profile, admin: :all
   def home
   end
 
@@ -12,5 +13,8 @@ class PagesController < ApplicationController
   end
 
   def donate
+  end
+
+  def profile
   end
 end
