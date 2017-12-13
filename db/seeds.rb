@@ -82,4 +82,11 @@ p "*" * 50
 p "finished with Posts, moving to Comments"
 p "*" * 50
 
+(blog_count * 3).times do |i|
+  mybody = Array.new([*5..15].sample) {RandomWord.nouns.next}.join(" ")
+  Comment.create(body: mybody,
+                 user_id: [*1..user_count].sample,
+                 blog_id: [*1..blog_count].sample)
+end
+
 
