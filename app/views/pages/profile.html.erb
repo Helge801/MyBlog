@@ -1,6 +1,8 @@
 <h1>profile</h1>
 
 <%= image_tag current_user.image %>
+<h2><%= current_user.name %> | <%= current_user.username %></h2>
+
 <hr>
 
 <% @blogs.each do |b| %>
