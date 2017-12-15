@@ -1,0 +1,21 @@
+<h1><%= @blog.title %> ~by <%= @blog.user.username %></h1>
+<%= image_tag @blog.image %>
+<p><%= @blog.body %></p>
+
+<hr>
+
+<% @posts.each do |p| %>
+  <p><%= p.created_at %></p>
+  <p><%= p.body %></p>
+  <hr>
+<% end %>
+
+<hr>
+<hr>
+
+<% @comments.each do |c| %>
+  <% u = c.user %>
+  <%= image_tag u.image %>
+  <h4><%= u.username %></h4>
+  <p><%= c.body %></p>
+<% end %>

@@ -20,6 +20,8 @@ class BlogsController < ApplicationController
   end
 
   def show
+    @posts = @blog.post
+    @comments = @blog.comment
   end
 
   def edit
@@ -41,6 +43,7 @@ class BlogsController < ApplicationController
 
 #==== Private ====================
   private
+#=================================
 
   def blog_params
     params.require(:blog).permit(:title, :body, :image, :user_id)
