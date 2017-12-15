@@ -1,1 +1,9 @@
 <h1>profile</h1>
+
+<%= image_tag current_user.image %>
+<hr>
+
+<% @blogs.each do |b| %>
+  <h1><%= link_to b.title, b %></h1>
+  <%= b.body %>
+<% end %>

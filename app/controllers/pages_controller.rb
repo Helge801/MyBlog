@@ -16,6 +16,6 @@ class PagesController < ApplicationController
   end
 
   def profile
-    @blogs = current_user.blog
+    @blogs = current_user.blog 
   end
 end
