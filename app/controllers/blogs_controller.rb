@@ -3,11 +3,12 @@ class BlogsController < ApplicationController
   # access all: [:home, :help, :legal, :about, :donate], user: :profile, admin: :all
 
   def new
-
+    @blog = Blog.new
   end
 
   def create
-    @blog + Blog.new(blog_params)
+    @blog = current_user.blog.new(blog_params)
+    @blog.image = "http://unsplash.it/#{[*290..310].sample}/#{[*190..210].sample}?random"
     if @blog.save
       redirect_to @blog
     else
@@ -16,7 +17,7 @@ class BlogsController < ApplicationController
   end
 
   def index
-    @blogs = Blog.all
+    @blogs = current_user.blog
   end
 
   def show

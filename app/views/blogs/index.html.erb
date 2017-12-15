@@ -1,0 +1,8 @@
+<h1>Index Page for Blogs</h1>
+
+<% @blogs.each do |b| %>
+  <h2><%= b.title %></h2>
+  <h6><em> - by <%= b.user.username %></em></h6>
+  <hr>
+  <p><%= b.body %></p>
+<% end %>

@@ -1,0 +1,21 @@
+<h1>New Blog</h1>
+
+<% blog = @blog %>
+
+<%= form_with(model: blog, local: true) do |form| %>
+  
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+
+<% end %>
