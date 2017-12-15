@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  access all: [:home, :help, :legal, :about, :donate], user: :profile, admin: :all
+  # access all: [:home, :help, :legal, :about, :donate, :profile], user: :profile, admin: :all
   def home
   end
 
@@ -16,5 +16,6 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @blogs = current_user.blog
   end
 end

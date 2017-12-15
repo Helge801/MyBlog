@@ -12,7 +12,8 @@ User.create!(email: "hello@hello.com",
               password: "asdfasdf",
               password_confirmation: "asdfasdf",
               name: "Sample User",
-              username: "Helge801"
+              username: "Helge801",
+              image: "http://placebeard.it/150/200"
               )
 p "*" * 50
 p "Regular User created"
@@ -28,7 +29,8 @@ thisisadmin = User.create!(email: "goodbye@goodbye.com",
               password_confirmation: "asdfasdf",
               name: "Sample admin",
               username: "Helge801",
-              roles: "admin"
+              roles: "admin",
+              image: "http://placebeard.it/150/201"
               )
 p "*" * 50
 p "Admin User created"
@@ -46,7 +48,8 @@ p "*" * 50
               password: mypass,
               password_confirmation: mypass,
               name: myname,
-              username: myname.split.first + "123"
+              username: myname.split.first + "123",
+              image: "http://placebeard.it/#{[*140..160].sample}/#{[*190..210].sample}"
               )  
   p "Created User: #{myname}"
 end
