@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'pages/donate'
 
+  get 'pages/profile'
+
   root to: 'pages#home'
 
   resources :blogs
