@@ -87,6 +87,11 @@ p "*" * 50
   Comment.create(body: mybody,
                  user_id: [*1..user_count].sample,
                  blog_id: [*1..blog_count].sample)
+  p "comment created"
 end
+
+p "*" * 50
+p "finished with comments"
+p "*" * 50
 
 
