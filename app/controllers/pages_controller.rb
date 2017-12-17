@@ -15,7 +15,15 @@ class PagesController < ApplicationController
   def donate
   end
 
-  def profile
+  def my_profile
     @blogs = current_user.blog 
+  end
+
+  def profile
+
+  end
+
+  def account
+
   end
 end

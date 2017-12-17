@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   get 'pages/profile'
 
+  get 'pages/authors'
+
+  get 'pages/my_profile'
+
   root to: 'pages#home'
 
   resources :blogs

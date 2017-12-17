@@ -9,20 +9,12 @@
 
   <body>
     <%= render 'shared/nav' %>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
-          
+        <div class="col-md-2 nav-sidebar">
           <%= render 'shared/sidebar' %>
-
         </div>
-
         <div class="col-md-10">
-          <%= (link_to 'Log-in', new_user_session_path) if !logged_in?(:user, :admin) %>
-          <%= (link_to 'Log-out', destroy_user_session_path, method: :delete) if logged_in?(:user, :admin) %>
-          <%= (link_to 'Sign-up', new_user_registration_path) if !logged_in?(:user, :admin) %>
           <%= yield %>
         </div>
       </div>
