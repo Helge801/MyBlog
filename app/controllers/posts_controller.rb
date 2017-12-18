@@ -5,7 +5,8 @@ class PostsController < ApplicationControllor
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.post.new(post_params)
+      #TODO: need to make it so that when A post is greated from a blog the blog ID is passed in.
     if @post.save
       redirect_to @post.blog # TODO: may need refactoring
     end

@@ -1,10 +1,15 @@
 <h1><%= @blog.title %> ~by <%= @blog.user.username %></h1>
 
 <div class="container">
-  <%= image_tag @blog.image %>
-  <p><%= @blog.body %></p>
+  <div class="row">
+    <div class="col-md-8">
+        <p><%= @blog.body %></p>
+    </div>
+    <div class="col-md-4">
+          <%= image_tag @blog.image %>
+    </div>
+  </div>
 
-  <hr>
 
   <% @posts.each do |p| %>
     <p><%= p.created_at %></p>
