@@ -11,7 +11,8 @@ end
 
 def destroy
   @comment = Comment.find(params[:id])
-  @comment.destroy
+  if should_permit? @post
+    @comment.destroy
 end
 
 private

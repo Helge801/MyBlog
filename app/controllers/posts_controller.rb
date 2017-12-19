@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  access all: [:index, :show], user: :all, admin: :all
 
   def new
     @post = Blog.find(params[:blog_id]).post.new #TODO: May need refactoring

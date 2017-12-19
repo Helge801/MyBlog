@@ -12,6 +12,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+          <%= js add_gritter(flash[:notice], time: 2000)%>
           <%= yield %>
         </div>
       </div>

@@ -26,14 +26,14 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    if !(current_user.id == @blog.user_id || current_user.has_roles?(:admin))
+    if !(should_permit? @blog)
       flash[:notice] = "You cannot edit blogs that do not belong to you"
       redirect_to pages_my_profile_path if current_user.id != @blog.user_id
     end
   end
 
   def update
-    if (current_user.id == @blog.user_id || current_user.has_roles?(:admin))
+    if (should_permit? @blog)
       if @blog.update(blog_params)
         redirect_to @blog
       else
@@ -46,8 +46,16 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-    @blog.destroy
-    redirect_to blogs_path
+    if should_permit? @blog
+      @blog.comment.each {|c| c.destroy}
+      @blog.post.each {|p| p.destroy}
+      @blog.destroy
+      flash[:notice] = "Blog deleted successfully"
+      redirect_to pages_my_profile_path
+    else
+      flash[:notice] = "You cannot delete blogs that don't belong to you!"
+      redirect_to @blog
+    end
   end
 
 
