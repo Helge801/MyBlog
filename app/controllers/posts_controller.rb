@@ -2,16 +2,26 @@ class PostsController < ApplicationController
   access all: [:index, :show], user: :all, admin: :all
 
   def new
-    @post = Blog.find(params[:blog_id]).post.new #TODO: May need refactoring
+    @blog = Blog.find(params[:blog_id])
+    if should_permit? @blog
+      @post = @blog.post.new #TODO: May need refactoring
+    else
+      flash[:notice] = "You cannot create a post for a blog that doesn't belong to you"
+      redirect_to @blog
+    end
   end
 
   def create
     @post = Post.new(post_params)
     @post.blog_id = params[:blog_id]
-    byebug
-      #TODO: need to make it so that when A post is greated from a blog the blog ID is passed in.
-    if @post.save
-      redirect_to @post.blog # TODO: may need refactoring
+    if should_permit? @post
+      if @post.save
+        flash[:notice] = "post successfully created"
+        redirect_to @post.blog # TODO: may need refactoring
+      end
+    else
+      flash[:notice] = "You cannot create a post for a blog that doesn't belong to you"
+      redirect_to @post.blog
     end
   end
 
@@ -19,17 +29,35 @@ class PostsController < ApplicationController
 
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
   def destroy
     @post = Post.find(params[:id])
-    redirect_to @post.blog # TODO: may need refactoring
+    if should_permit? @post
+      @blog = @post.blog
+      @post.destroy
+      flash[:notice] = "post successfully created"
+      redirect_to @blog
+    else
+      flash[:notice] = "You cannot delete a post for a blog that doesn't belong to you"
+      redirect_to @post.blog
+    end
   end
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
-      redirect_to @post.blog # TODO: may need refactoring
+    if should_permit? @post
+      if @post.update(post_params)
+        flash[:notice] = "post updated successfully"
+        redirect_to @post.blog
+      else
+        render :edit
+      end
     else
-      render :edit
+      flash[:notice] = "You cannot edit a post for a blog that doesn't belong to you"
+      redirect_to @post.blog
     end
   end
 

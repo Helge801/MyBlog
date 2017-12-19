@@ -14,14 +14,16 @@ Rails.application.routes.draw do
 
   get 'pages/my_profile'
 
-  get 'posts/new/:blog_id', to: 'posts#new', as: 'new_post'
+  # get 'posts/new/:blog_id', to: 'posts#new', as: 'new_post'
 
-  get 'posts', to: 'posts#index'
+  # get 'posts', to: 'posts#index', as: 'post'
 
-  post 'posts', to: 'posts#create'
+  # post 'posts', to: 'posts#create', as: 'post'
+
+  # get 'posts/:id/edit', to: 'posts#edit', as: 'edit_post'
 
   root to: 'pages#home'
-
+  resources :posts
   resources :blogs
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

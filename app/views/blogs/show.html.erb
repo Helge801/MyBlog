@@ -16,9 +16,12 @@
 
   <%= link_to 'New post', new_post_path(:blog_id => @blog.id) if should_permit? @blog %>
   <%= ("<h2>This blog does not yet have any posts.</h2>".html_safe) if @blog.post.count < 1 %>
-  <% @posts.each do |p| %>
-    <p><%= p.created_at %></p>
-    <p><%= p.body %></p>
+  <% @posts.each do |post| %>
+    <p><%= post.created_at %></p>
+    <p><%= post.body %></p>
+    <% if should_permit? @blog %>
+      <p><%= link_to "Edit", edit_post_path(post) %> / <%= link_to "Delete", post, method: :delete, data: {confirm: "Are you sure you want to delete this post?"} %></p>
+    <% end %>
 
     <hr>
   <% end %>
