@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :get_blog, only: [:show, :edit, :update, :destroy]
-  # access all: [:home, :help, :legal, :about, :donate], user: :profile, admin: :all
+  access all: [:index, :show], user: :all, admin: :all
 
   def new
     @blog = Blog.new
@@ -26,6 +26,10 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    if current_user.id != @blog.user_id
+      flash[:notice] = "You cannot edit blogs that do not belong to you"
+      redirect_to pages_my_profile_path if current_user.id != @blog.user_id
+    end
   end
 
   def update
