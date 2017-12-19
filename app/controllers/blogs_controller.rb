@@ -26,17 +26,22 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    if current_user.id != @blog.user_id
+    if !(current_user.id == @blog.user_id || current_user.has_roles?(:admin))
       flash[:notice] = "You cannot edit blogs that do not belong to you"
       redirect_to pages_my_profile_path if current_user.id != @blog.user_id
     end
   end
 
   def update
-    if @blog.update(blog_params)
-      redirect_to @blog
+    if (current_user.id == @blog.user_id || current_user.has_roles?(:admin))
+      if @blog.update(blog_params)
+        redirect_to @blog
+      else
+        render :edit
+      end
     else
-      render :edit
+      flash[:notice] = "You cannot edit blogs that do not belong to you"
+      redirect_to pages_my_profile_path
     end
   end
 
