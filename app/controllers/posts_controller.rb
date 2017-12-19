@@ -1,15 +1,21 @@
-class PostsController < ApplicationControllor
+class PostsController < ApplicationController
 
   def new
-    @post = Blog.find(params[:id]).post.new #TODO: May need refactoring
+    @post = Blog.find(params[:blog_id]).post.new #TODO: May need refactoring
   end
 
   def create
-    @post = current_user.post.new(post_params)
+    @post = Post.new(post_params)
+    @post.blog_id = params[:blog_id]
+    byebug
       #TODO: need to make it so that when A post is greated from a blog the blog ID is passed in.
     if @post.save
       redirect_to @post.blog # TODO: may need refactoring
     end
+  end
+
+  def index
+
   end
 
   def destroy

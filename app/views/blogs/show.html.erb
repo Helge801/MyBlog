@@ -10,7 +10,7 @@
     </div>
   </div>
 
-
+  <%= link_to 'New post', new_post_path(:blog_id => @blog.id) %>
   <% @posts.each do |p| %>
     <p><%= p.created_at %></p>
     <p><%= p.body %></p>

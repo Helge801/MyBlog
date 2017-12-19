@@ -14,6 +14,12 @@ Rails.application.routes.draw do
 
   get 'pages/my_profile'
 
+  get 'posts/new/:blog_id', to: 'posts#new', as: 'new_post'
+
+  get 'posts', to: 'posts#index'
+
+  post 'posts', to: 'posts#create'
+
   root to: 'pages#home'
 
   resources :blogs
